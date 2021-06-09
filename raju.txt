@@ -1,0 +1,9 @@
+@ECHO OFF
+For /f "tokens=2-4 delims=/ " %%a in ('date /t') do (set mydate=%%c-%%a-%%b)
+For /f "tokens=1-3 delims=/:/ " %%a in ('time /t') do (set mytime=%%a-%%b-%%c)
+
+"C:\Program Files\7-Zip\7za.exe" a -tzip "D:\backup\mybackup_%mydate%_%mytime%.zip" "D:\TallyPrime\Data" -mx5
+
+
+aws s3 sync "d:\backup" s3://raju505050
+
